@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
@@ -114,67 +117,84 @@ function App() {
     <div className="container py-5">
       <h1 className="text-center mb-4">Gerenciador de Reagentes</h1>
 
-      <form
-        onSubmit={handleSubmit}
-        className="card p-4 shadow-sm mb-5"
-        style={{ maxWidth: "600px", margin: "auto" }}
-      >
-        <div className="mb-3">
-          <label className="form-label">Nome</label>
-          <input
-            name="nome"
-            value={form.nome}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Código SKU</label>
-          <input
-            name="codigoSku"
-            value={form.codigoSku}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Lote</label>
-          <input
-            name="lote"
-            value={form.lote}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Data de Validade</label>
-          <input
-            type="date"
-            name="dataValidade"
-            value={form.dataValidade}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Quantidade em Estoque</label>
-          <input
-            type="number"
-            name="quantidadeEmEstoque"
-            value={form.quantidadeEmEstoque}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary w-100">
-          Adicionar Reagente
-        </button>
-      </form>
+      <div className="form-section">
+
+        <img
+          src="/img/reagente1.jpg"
+          alt="Imagem reagente 1"
+          className="reagente-img"
+        />
+
+        <form
+          onSubmit={handleSubmit}
+          className="card p-4 shadow-sm form-card"
+        >
+
+          <div className="mb-3">
+            <label className="form-label">Nome</label>
+            <input
+              name="nome"
+              value={form.nome}
+              onChange={handleChange}
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Código SKU</label>
+            <input
+              name="codigoSku"
+              value={form.codigoSku}
+              onChange={handleChange}
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Lote</label>
+            <input
+              name="lote"
+              value={form.lote}
+              onChange={handleChange}
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Data de Validade</label>
+            <input
+              type="date"
+              name="dataValidade"
+              value={form.dataValidade}
+              onChange={handleChange}
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Quantidade em Estoque</label>
+            <input
+              type="number"
+              name="quantidadeEmEstoque"
+              value={form.quantidadeEmEstoque}
+              onChange={handleChange}
+              className="form-control"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Adicionar Reagente
+          </button>
+        </form>
+
+        <img
+          src="/img/reagente2.jpg"
+          alt="Imagem reagente 2"
+          className="reagente-img"
+        />
+
+      </div>
+
 
       <div className="card shadow-sm p-4">
         <h2 className="h5 mb-3">Lista de Reagentes</h2>
