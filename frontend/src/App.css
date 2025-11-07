@@ -184,3 +184,28 @@ h1 {
 ::-webkit-scrollbar-track {
   background: #050510;
 }
+.main-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  flex-wrap: nowrap;
+  margin-top: 1rem;
+}
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.top-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+h1 {
+  margin-bottom: 1rem; /* título mais próximo do formulário */
+}

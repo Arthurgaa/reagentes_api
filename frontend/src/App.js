@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
@@ -14,9 +11,8 @@ function App() {
     quantidadeEmEstoque: "",
   });
 
-  const API_URL = "http://localhost:8080/api/reagentes"; // usa o backend Spring Boot
+  const API_URL = "http://localhost:8080/api/reagentes";
 
-  // Carregar reagentes
   const carregarReagentes = async () => {
     try {
       const resp = await fetch(API_URL);
@@ -35,17 +31,15 @@ function App() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ============ ALTERADO ============
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validação simples antes de enviar
     if (!form.nome || !form.codigoSku || !form.lote || !form.dataValidade) {
       alert("Preencha todos os campos obrigatórios!");
       return;
     }
 
-    // Monta o mínimo necessário
+// Monta o mínimo necessário
     const base = {
       nome: (form.nome || "").trim(),
       codigoSku: (form.codigoSku || "").trim(),
@@ -99,14 +93,12 @@ function App() {
         dataValidade: "",
         quantidadeEmEstoque: "",
       });
-
       await carregarReagentes();
     } catch (error) {
       console.error("🚫 Erro na requisição:", error);
       alert("Erro de conexão com o servidor.");
     }
   };
-  // ============ FIM ALTERAÇÃO ============
 
   const deletar = async (id) => {
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
@@ -114,22 +106,22 @@ function App() {
   };
 
   return (
-    <div className="container py-5">
-      <h1 className="text-center mb-4">Gerenciador de Reagentes</h1>
+    <div className="container py-4">
+      <h1 className="text-center mb-3">Gerenciador de Reagentes</h1>
 
-      <div className="form-section">
+      {/* === BLOCO PRINCIPAL === */}
+      <div className="main-layout">
+        {/* Coluna Esquerda */}
+        <div className="side-column">
+          <div className="top-row">
+            <img src="/img/reagente1.jpg" alt="Reagente 1" className="reagente-img" />
+            <img src="/img/reagente2.jpg" alt="Reagente 2" className="reagente-img" />
+          </div>
+          <img src="/img/reagente3.png" alt="Reagente 3" className="reagente-img" />
+        </div>
 
-        <img
-          src="/img/reagente1.jpg"
-          alt="Imagem reagente 1"
-          className="reagente-img"
-        />
-
-        <form
-          onSubmit={handleSubmit}
-          className="card p-4 shadow-sm form-card"
-        >
-
+        {/* Formulário Central */}
+        <form onSubmit={handleSubmit} className="card p-4 shadow-sm form-card">
           <div className="mb-3">
             <label className="form-label">Nome</label>
             <input
@@ -187,16 +179,18 @@ function App() {
           </button>
         </form>
 
-        <img
-          src="/img/reagente2.jpg"
-          alt="Imagem reagente 2"
-          className="reagente-img"
-        />
-
+        {/* Coluna Direita */}
+        <div className="side-column">
+          <div className="top-row">
+            <img src="/img/reagente4.png" alt="Reagente 4" className="reagente-img" />
+            <img src="/img/reagente5.png" alt="Reagente 5" className="reagente-img" />
+          </div>
+          <img src="/img/reagente6.png" alt="Reagente 6" className="reagente-img" />
+        </div>
       </div>
 
-
-      <div className="card shadow-sm p-4">
+      {/* === TABELA === */}
+      <div className="card shadow-sm p-4 mt-4">
         <h2 className="h5 mb-3">Lista de Reagentes</h2>
         {reagentes.length === 0 ? (
           <p className="text-muted text-center">Nenhum reagente cadastrado.</p>
