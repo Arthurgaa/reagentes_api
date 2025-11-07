@@ -37,8 +37,7 @@
     width: 100%;
     text-align: left;
   }
-<<<<<<< HEAD
-}
+
 
 /* ========== Scrollbar futurista ========== */
 ::-webkit-scrollbar {
@@ -53,6 +52,7 @@
 ::-webkit-scrollbar-track {
   background: #050510;
 }
+
 .main-layout {
   display: flex;
   justify-content: center;
@@ -78,7 +78,6 @@
 h1 {
   margin-bottom: 1rem; /* título mais próximo do formulário */
 }
-=======
   
   /* ========== Imagens laterais (grandes e equilibradas) ========== */
   .reagente-img {
@@ -113,27 +112,65 @@ h1 {
     box-shadow: 0 0 35px #00ffff66;
   }
   
-  /* ========== Labels e Inputs ========== */
-  .form-label {
-    padding: 0 12px;
-    color: #9cf;
-    font-weight: 500;
-  }
-  
-  .form-control {
-    background: rgba(10, 10, 25, 0.85);
-    color: #fff;
-    border: 1px solid #0ff5;
-    border-radius: 8px;
-    transition: 0.3s;
-  }
-  
-  .form-control:focus {
-    outline: none;
-    border-color: #00ffff;
-    box-shadow: 0 0 8px #00ffff;
-    background: rgba(20, 20, 40, 0.95);
-  }
+/* ===== Labels ===== */  
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #80ffff;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-shadow: 0 0 6px #00ffff55;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.form-label:hover {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffffaa;
+}
+
+/* ===== Inputs ===== */
+.form-control {
+  width: 100%;
+  background: rgba(15, 25, 45, 0.65);
+  color: #e5faff;
+  border: 1px solid #00ffff55;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  box-shadow: inset 0 0 6px rgba(0, 255, 255, 0.05);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* ===== Placeholder ===== */
+.form-control::placeholder {
+  color: #7bd7d7aa;
+  opacity: 0.8;
+}
+
+/* ===== Foco — Neon fixo, sem movimento ===== */
+.form-control:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 12px #00ffff99, inset 0 0 8px #00ffff44;
+  background: rgba(10, 20, 35, 0.8);
+  color: #fff;
+   transform: scale(1.02);
+}
+
+/* ===== Hover — leve brilho antes do foco ===== */
+.form-control:hover {
+  border-color: #00ffffaa;
+  box-shadow: 0 0 10px #00ffff55;
+  background: rgba(15, 25, 45, 0.75);
+}
+
+/* ===== Erro visual opcional ===== */
+.form-control:invalid {
+  border-color: #ff3366;
+  box-shadow: 0 0 10px #ff336655;
+}
+
   
   /* ========== Botão principal ========== */
   .btn-primary {
@@ -228,4 +265,3 @@ h1 {
     background: #050510;
   }
   
->>>>>>> ed6efef8b31ee8af108ec25927a16ffc0ba9eccc
