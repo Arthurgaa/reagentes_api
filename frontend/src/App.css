@@ -2,185 +2,187 @@
    🌌 Tema Futurista Neon
    ============================ */
 
-body {
-  background: radial-gradient(circle at top, #0a0a15 0%, #050510 100%);
-  color: #e0e0ff;
-  font-family: "Poppins", "Segoe UI", sans-serif;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #0ff;
-  text-shadow: 0 0 20px #0ff;
-  letter-spacing: 1px;
-  margin-bottom: 2rem;
-}
-
-/* ========== Container principal ========== */
-.container {
-  max-width: 1100px;
-  margin: auto;
-}
-
-/* ========== Seção do formulário e imagens ========== */
-.form-section {
-  display: flex;
-  justify-content: center;       /* Centraliza horizontalmente */
-  align-items: center;           /* Alinha verticalmente */
-  gap: 4rem;                     /* Espaço entre imagem e form */
-  margin-bottom: 3rem;
-  flex-wrap: nowrap;
-  width: 100%;
-  text-align: center;
-}
-
-/* ========== Imagens laterais (grandes e equilibradas) ========== */
-.reagente-img {
-  width: 260px;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 15px;
-  display: block;
-  align-self: center;
-  filter: drop-shadow(0 0 25px #00ffff55);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.reagente-img:hover {
-  transform: scale(1.08);
-  filter: drop-shadow(0 0 40px #00ffffaa);
-}
-
-/* ========== Card do formulário ========== */
-.form-card {
-  min-width: 500px;
-  max-width: 600px;
-  background: rgba(20, 20, 40, 0.9);
-  border: 1px solid #0ff3;
-  border-radius: 15px;
-  box-shadow: 0 0 25px #00ffff22;
-  transition: box-shadow 0.4s ease;
-  padding: 2rem;
-}
-
-.form-card:hover {
-  box-shadow: 0 0 35px #00ffff66;
-}
-
-/* ========== Labels e Inputs ========== */
-.form-label {
-  color: #9cf;
-  font-weight: 500;
-}
-
-.form-control {
-  background: rgba(10, 10, 25, 0.85);
-  color: #fff;
-  border: 1px solid #0ff5;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: #00ffff;
-  box-shadow: 0 0 8px #00ffff;
-  background: rgba(20, 20, 40, 0.95);
-}
-
-/* ========== Botão principal ========== */
-.btn-primary {
-  background: linear-gradient(90deg, #00ffff, #0066ff);
-  border: none;
-  color: #000;
-  font-weight: 600;
-  border-radius: 8px;
-  box-shadow: 0 0 10px #00ffff88;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #00ffffcc;
-}
-
-/* ========== Card da tabela ========== */
-.card {
-  background: rgba(20, 20, 40, 0.9);
-  border: 1px solid #0ff3;
-  border-radius: 12px;
-  box-shadow: 0 0 25px #00ffff22;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.card h2 {
-  color: #00ffff;
-  text-shadow: 0 0 10px #00ffff;
-}
-
-/* ========== Tabela ========== */
-.table {
-  color: #ccefff;
-  border-color: #0ff5;
-}
-
-.table thead {
-  background: linear-gradient(90deg, #001f3f, #003366);
-  color: #00ffff;
-  text-shadow: 0 0 5px #00ffffaa;
-}
-
-.table-hover tbody tr:hover {
-  background: rgba(0, 255, 255, 0.08);
-}
-
-/* ========== Botão de Excluir ========== */
-.btn-danger {
-  background: linear-gradient(90deg, #ff0044, #cc0033);
-  border: none;
-  color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 0 8px #ff004455;
-  transition: 0.2s;
-}
-
-.btn-danger:hover {
-  background: linear-gradient(90deg, #ff3366, #ff0044);
-  box-shadow: 0 0 15px #ff005588;
-}
-
-/* ========== Responsividade ========== */
-@media (max-width: 900px) {
+   body {
+    background: radial-gradient(circle at top, #0a0a15 0%, #050510 100%);
+    color: #e0e0ff;
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0ff;
+    text-shadow: 0 0 20px #0ff;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+  }
+  
+  /* ========== Container principal ========== */
+  .container {
+    max-width: 1100px;
+    margin: auto;
+  }
+  
+  /* ========== Seção do formulário e imagens ========== */
   .form-section {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .reagente-img {
-    width: 180px;
-    height: 180px;
-  }
-
-  .form-card {
+    display: flex;
+    justify-content: center;       /* Centraliza horizontalmente */
+    align-items: center;           /* Alinha verticalmente */
+    gap: 4rem;                     /* Espaço entre imagem e form */
+    margin-bottom: 3rem;
+    flex-wrap: nowrap;
     width: 100%;
+    text-align: left;
   }
-}
-
-/* ========== Scrollbar futurista ========== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00ffff, #0044ff);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #050510;
-}
+  
+  /* ========== Imagens laterais (grandes e equilibradas) ========== */
+  .reagente-img {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+    align-self: center;
+    filter: drop-shadow(0 0 25px #00ffff55);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  .reagente-img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 40px #00ffffaa);
+  }
+  
+  /* ========== Card do formulário ========== */
+  .form-card {
+    min-width: 500px;
+    max-width: 600px;
+    background: rgba(20, 20, 40, 0.9);
+    border: 1px solid #0ff3;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #00ffff22;
+    transition: box-shadow 0.4s ease;
+    padding: 2rem;
+  }
+  
+  .form-card:hover {
+    box-shadow: 0 0 35px #00ffff66;
+  }
+  
+  /* ========== Labels e Inputs ========== */
+  .form-label {
+    padding: 0 12px;
+    color: #9cf;
+    font-weight: 500;
+  }
+  
+  .form-control {
+    background: rgba(10, 10, 25, 0.85);
+    color: #fff;
+    border: 1px solid #0ff5;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 8px #00ffff;
+    background: rgba(20, 20, 40, 0.95);
+  }
+  
+  /* ========== Botão principal ========== */
+  .btn-primary {
+    background: linear-gradient(90deg, #00ffff, #0066ff);
+    border: none;
+    color: #000;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00ffff88;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00ffffcc;
+  }
+  
+  /* ========== Card da tabela ========== */
+  .card {
+    background: rgba(20, 20, 40, 0.9);
+    border: 1px solid #0ff3;
+    border-radius: 12px;
+    box-shadow: 0 0 25px #00ffff22;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .card h2 {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+  }
+  
+  /* ========== Tabela ========== */
+  .table {
+    color: #ccefff;
+    border-color: #0ff5;
+  }
+  
+  .table thead {
+    background: linear-gradient(90deg, #001f3f, #003366);
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffffaa;
+  }
+  
+  .table-hover tbody tr:hover {
+    background: rgba(0, 255, 255, 0.08);
+  }
+  
+  /* ========== Botão de Excluir ========== */
+  .btn-danger {
+    background: linear-gradient(90deg, #ff0044, #cc0033);
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #ff004455;
+    transition: 0.2s;
+  }
+  
+  .btn-danger:hover {
+    background: linear-gradient(90deg, #ff3366, #ff0044);
+    box-shadow: 0 0 15px #ff005588;
+  }
+  
+  /* ========== Responsividade ========== */
+  @media (max-width: 900px) {
+    .form-section {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    .reagente-img {
+      width: 180px;
+      height: 180px;
+    }
+  
+    .form-card {
+      width: 100%;
+    }
+  }
+  
+  /* ========== Scrollbar futurista ========== */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00ffff, #0044ff);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #050510;
+  }
+  
