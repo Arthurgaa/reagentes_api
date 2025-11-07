@@ -14,16 +14,29 @@ public class Reagente {
     @Id
     private UUID id = UUID.randomUUID();
 
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String codigoSku;
+
+    @Column(nullable = false)
     private String lote;
+
+    @Column(nullable = false)
     private LocalDate dataValidade;
+
+    @Column(nullable = false)
     private LocalDate dataRecebimento;
+
+    @Column(nullable = false)
     private Integer quantidadeEmEstoque;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private StatusReagente status;
 
+    // ✅ RELACIONAMENTOS OPCIONAIS
     @ManyToOne(optional = true)
     @JoinColumn(name = "fabricante_id", nullable = true)
     private Fabricante fabricante;

@@ -32,67 +32,78 @@ function App() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  // ============ ALTERADO ============
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  // 🚨 Validação simples antes de enviar
-  if (!form.nome || !form.codigoSku || !form.lote || !form.dataValidade) {
-    alert("Preencha todos os campos obrigatórios!");
-    return;
-  }
-
-  const payload = {
-    nome: form.nome.trim(),
-    codigoSku: form.codigoSku.trim(),
-    lote: form.lote.trim(),
-    dataValidade: form.dataValidade || null,
-    dataRecebimento: new Date().toISOString().split("T")[0], // data atual no formato yyyy-MM-dd
-    quantidadeEmEstoque: form.quantidadeEmEstoque
-      ? parseInt(form.quantidadeEmEstoque)
-      : 0, // garante número válido
-    status: "DISPONIVEL", // valor válido no enum
-    fabricanteId: null,
-    localizacaoId: null,
-  };
-
-  console.log("📦 Enviando payload:", payload); // debug no console do navegador
-
-  try {
-    const resp = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!resp.ok) {
-      const msg = await resp.text();
-      console.error("❌ Erro do servidor:", msg);
-      alert("Erro ao cadastrar reagente. Veja o console para mais detalhes.");
+    // Validação simples antes de enviar
+    if (!form.nome || !form.codigoSku || !form.lote || !form.dataValidade) {
+      alert("Preencha todos os campos obrigatórios!");
       return;
     }
 
-    const novoReagente = await resp.json();
-    console.log("✅ Reagente cadastrado:", novoReagente);
+    // Monta o mínimo necessário
+    const base = {
+      nome: (form.nome || "").trim(),
+      codigoSku: (form.codigoSku || "").trim(),
+      lote: (form.lote || "").trim(),
+      dataValidade: form.dataValidade || null, // yyyy-MM-dd
+      dataRecebimento: new Date().toISOString().split("T")[0],
+      quantidadeEmEstoque: form.quantidadeEmEstoque
+        ? parseInt(form.quantidadeEmEstoque, 10)
+        : 0,
+      status: "LIBERADO",
+      // OBS: NÃO vamos enviar fabricanteId/localizacaoId quando estiverem vazios
+      // fabricanteId: form.fabricanteId || null,
+      // localizacaoId: form.localizacaoId || null,
+    };
 
-    // Limpa o formulário e recarrega a lista
-    setForm({
-      nome: "",
-      codigoSku: "",
-      lote: "",
-      dataValidade: "",
-      quantidadeEmEstoque: "",
-    });
+    // Remove chaves nulas/vazias (evita 400 por binding/validação)
+    const payload = Object.fromEntries(
+      Object.entries(base).filter(
+        ([, v]) =>
+          v !== null &&
+          v !== "" &&
+          !(typeof v === "number" && Number.isNaN(v))
+      )
+    );
 
-    await carregarReagentes();
-  } catch (error) {
-    console.error("🚫 Erro na requisição:", error);
-    alert("Erro de conexão com o servidor.");
-  }
-};
+    console.log("📦 Enviando payload:", payload);
+
+    try {
+      const resp = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
 
+      if (!resp.ok) {
+        const msg = await resp.text(); // pega texto retornado pelo backend
+        console.error("❌ Resposta do backend:", msg);
+        alert("Erro ao cadastrar reagente. Veja o console para mais detalhes.");
+        return;
+        }
+
+      const novoReagente = await resp.json();
+      console.log("✅ Reagente cadastrado:", novoReagente);
+
+      // Limpa o formulário e recarrega a lista
+      setForm({
+        nome: "",
+        codigoSku: "",
+        lote: "",
+        dataValidade: "",
+        quantidadeEmEstoque: "",
+      });
+
+      await carregarReagentes();
+    } catch (error) {
+      console.error("🚫 Erro na requisição:", error);
+      alert("Erro de conexão com o servidor.");
+    }
+  };
+  // ============ FIM ALTERAÇÃO ============
 
   const deletar = async (id) => {
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });

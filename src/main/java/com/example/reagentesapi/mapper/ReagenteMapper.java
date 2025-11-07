@@ -11,7 +11,13 @@ public class ReagenteMapper {
         if (dto == null) return null;
 
         Reagente r = new Reagente();
-        r.setId(dto.getId());
+
+        // Só setar o ID se veio no DTO (casos de atualização).
+        // Em criação, deixe a entidade gerar/guardar o UUID padrão.
+        if (dto.getId() != null) {
+            r.setId(dto.getId());
+        }
+
         r.setNome(dto.getNome());
         r.setCodigoSku(dto.getCodigoSku());
         r.setLote(dto.getLote());
@@ -20,7 +26,7 @@ public class ReagenteMapper {
         r.setQuantidadeEmEstoque(dto.getQuantidadeEmEstoque());
         r.setStatus(dto.getStatus());
 
-        // Evita NullPointerException
+        // Evita NullPointerException e permite vincular só pelo ID
         if (dto.getFabricanteId() != null) {
             Fabricante f = new Fabricante();
             f.setId(dto.getFabricanteId());

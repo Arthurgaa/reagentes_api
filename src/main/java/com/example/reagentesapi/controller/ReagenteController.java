@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:3000") // 🔥 Permite que o React acesse a API
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/reagentes")
 public class ReagenteController {
@@ -23,20 +23,24 @@ public class ReagenteController {
         this.service = service;
     }
 
-    // 🔹 Criar reagente
     @PostMapping
-    public ResponseEntity<ReagenteDTO> create(@RequestBody ReagenteDTO dto) {
+    public ResponseEntity<?> create(@RequestBody ReagenteDTO dto) {
         try {
             Reagente toSave = ReagenteMapper.toEntity(dto);
             Reagente saved = service.create(toSave);
             return ResponseEntity.status(HttpStatus.CREATED).body(ReagenteMapper.toDTO(saved));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            String msg = (e.getMessage() != null && !e.getMessage().isBlank())
+                    ? e.getMessage()
+                    : e.getClass().getSimpleName();
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .contentType(org.springframework.http.MediaType.TEXT_PLAIN)
+                    .body("Falha ao criar reagente: " + msg);
         }
     }
 
-    // 🔹 Listar todos
     @GetMapping
     public ResponseEntity<List<ReagenteDTO>> listAll() {
         List<ReagenteDTO> list = service.listAll()
@@ -46,7 +50,6 @@ public class ReagenteController {
         return ResponseEntity.ok(list);
     }
 
-    // 🔹 Buscar por ID
     @GetMapping("/{id}")
     public ResponseEntity<ReagenteDTO> getById(@PathVariable UUID id) {
         return service.findById(id)
@@ -54,7 +57,6 @@ public class ReagenteController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // 🔹 Atualizar reagente
     @PutMapping("/{id}")
     public ResponseEntity<ReagenteDTO> update(@PathVariable UUID id, @RequestBody ReagenteDTO dto) {
         Reagente ent = ReagenteMapper.toEntity(dto);
@@ -63,13 +65,10 @@ public class ReagenteController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // 🔹 Deletar reagente
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         boolean deleted = service.delete(id);
-        if (deleted) {
-            return ResponseEntity.noContent().build();
-        }
+        if (deleted) return ResponseEntity.noContent().build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }

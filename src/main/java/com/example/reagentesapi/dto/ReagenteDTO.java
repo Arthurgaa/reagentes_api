@@ -3,6 +3,7 @@ package com.example.reagentesapi.dto;
 import com.example.reagentesapi.enums.StatusReagente;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -22,13 +23,12 @@ public class ReagenteDTO {
 
     private Integer quantidadeEmEstoque;
     private StatusReagente status;
+
     private UUID fabricanteId;
     private UUID localizacaoId;
 
-    // 🔹 Construtor vazio (necessário para o Jackson)
     public ReagenteDTO() {}
 
-    // 🔹 Construtor completo usado pelo Mapper
     public ReagenteDTO(UUID id, String nome, String codigoSku, String lote,
                        LocalDate dataValidade, LocalDate dataRecebimento,
                        Integer quantidadeEmEstoque, StatusReagente status,
@@ -45,7 +45,6 @@ public class ReagenteDTO {
         this.localizacaoId = localizacaoId;
     }
 
-    // 🔹 Getters e Setters
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
 
